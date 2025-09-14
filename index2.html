@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="icon" href="./assets/user-graduate-solid-full.svg">
+       
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <link href="styles.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       html{
+          overflow-x: hidden;
+          }
+
+      body {
+          background-color: #f4f7f6; /* A clean, professional off-white */
+         }
+        /* --- Option 1: Gradient Button --- */
+.btn-gradient {
+    background-image: linear-gradient(to right, #471e89, #117be5); /* Matches your theme's gradient */
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-gradient:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* --- Option 2: Navbar "Flowing Gradient" Text --- */
+.navbar-nav .nav-link {
+    /* Create the gradient background and size it up */
+    background: linear-gradient(90deg, #6610f2, #e21e80, #1e30f3, #6610f2);
+    background-size: 300% 100%;
+    background-position: 100% 0; /* Start the gradient at the end */
+    
+    /* Clip the background to the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Make the text color transparent to show the gradient */
+    -webkit-text-fill-color: transparent;
+    
+    /* Animate the background position */
+    transition: background-position 0.5s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    background-position: 0% 0; /* Move the gradient to the start on hover */
+}
+
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+        background-color: #f4f7f6; /* A clean, professional off-white */
+    }
+
+        
+
+        section {
+            min-height: 100vh;
+            padding: 4rem 0;
+            overflow-x: hidden;
+        }
+        /* Remove top padding ONLY from the home section */
+#home {
+    padding-top: 0;
+}
+.profile{
+    border-radius: 50%;
+    animation: zigzagAnimation 4s ease-in-out infinite;
+}
+        /* --- Skill Cards with Logos --- */
+.skill-card {
+    background-color: #f8f9fa; /* A very light grey, or use #fff for white */
+    border: 1px solid #e9ecef;
+    border-radius: 0.75rem; /* Rounded corners */
+    padding: 1.25rem;
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Soft shadow on hover */
+}
+
+/* Styling for the icons/logos */
+.skill-card i {
+    font-size: 3rem;  /* Make logos large */
+    margin-bottom: 0.75rem;
+}
+
+/* Styling for the text below the logo */
+.skill-card p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+/* Add this inside your @media (max-width: 991.98px) block */
+
+/* Style the new profile image toggler */
+.profile-toggler-img {
+    width: 45px;      /* Adjust size as needed */
+    height: 45px;
+    object-fit: cover; /* Prevents the image from stretching */
+    border: 2px solid var(--bs-primary); /* Optional: Adds a colored border */
+}
+
+/* Remove default button styling from the toggler */
+.navbar-toggler {
+    padding: 0;
+    border: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none; /* Removes the blue outline when clicked */
+}
+.btn-solid-hover {
+    /* This makes the color change smooth */
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-solid-hover:hover {
+    background-color: #212529; /* A solid, dark color */
+    color: #ffffff; /* Make the text white so it's readable */
+    border-color: #212529; /* Ensures the border matches */
+    box-shadow: 0 0 15px rgba(200, 200, 200, 0.6); /* This is the "light" glow effect */
+    transform: translateY(-2px); /* Optional: A slight lift effect */
+}
+/* Hide the large profile photo container on mobile */
+/* Add this CSS to hide the photo on mobile */
+@media (max-width: 991.98px) {
+    .hero-profile-container {
+        display: none;
+    }
+}
+@keyframes zigzagAnimation {
+  0% {
+    transform: translate(0, 0); /* Start at the original position */
+  }
+  25% {
+    transform: translate(10px, -10px); /* Move to the top-right */
+  }
+  75% {
+    transform: translate(-10px, 10px); /* Move to the bottom-left */
+  }
+  100% {
+    transform: translate(0, 0); /* Return to the start */
+  }
+  
+
+
+}
+
+
+
+       
+    </style>
+    <style>
+/* Timeline line */
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #dee2e6;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+/* Timeline items */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 2rem 3rem;
+}
+
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
+
+/* Connectors (dots) */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  border: 3px solid #fff;
+  z-index: 1;
+}
+
+.timeline-item.left::before { right: -10px; }
+.timeline-item.right::before { left: -10px; }
+
+/* Content box */
+.timeline-content {
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .timeline::after { left: 20px; }
+  .timeline-item {
+    width: 100%;
+    padding-left: 4rem;
+    padding-right: 2rem;
+  }
+  .timeline-item.right { left: 0; }
+  .timeline-item.left::before,
+  .timeline-item.right::before { left: 10px; }
+}
+</style>
+</head>
+<body class="hide-scrollbar">
+   
+    
+         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+                <div class="container px-4 px-lg-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Portfolio</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <img class="profile-toggler-img rounded-circle" src="assets/Remove background project.png" alt="Menu" />
+</button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           
+  
+
+    <section id="home" class="hero-section">
+    <header >
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center justify-content-center h-100">
+                <div class=" col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="text-center text-lg-start">
+                        <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+                            <div class="text-uppercase">Student &middot; Learner &middot; Developer</div>
+                        </div>
+                        <div class="fs-3 fw-light text-muted">Hi, I'm Jay — a dedicated Computer Engineering student</div>
+                        <h1 class="display-5 fw-bolder mb-5"><span class="text-gradient d-inline">Building robust applications from concept to deployment.</span></h1>
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-lg-start mb-3">
+    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder btn-solid-hover" href="#resume">Resume</a>
+    <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder btn-solid-hover" href="#projects">Projects</a>
+</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5  hero-profile-container" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="d-flex justify-content-center mt-5 mt-lg-0">
+                        <div class="profile bg-gradient-primary-to-secondary">
+                            <img class="profile-img" src="assets/Remove background project.png" alt="profile img" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+
+    <section id="about">
+        
+        <!-- Add your about content here -->
+          <!-- About Section-->
+            <section class="py-5" >
+                <div class="container px-5" data-aos="fade-up">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-xxl-8">
+                            <div class="text-center my-5">
+                                <h2 class="display-5 fw-bolder" ><span class="text-gradient d-inline">About Me</span></h2>
+                                <p class="lead fw-light mb-4">I'm a third-year Computer Engineering student with a strong interest in Full-Stack Development and Machine Learning.
+
+I build applications that are not only functional but also user-friendly and scalable.
+
+I'm skilled in Java, Python and have hands-on experience with frameworks like Bootstrap,React.js, Node.js, and MongoDB.
+
+I'm constantly working on refining my DSA skills .</p>
+                                <div class="d-flex justify-content-center fs-2 gap-4">
+                                   
+                                    <a class="text-gradient" href="https://www.linkedin.com/in/jay-kolate-b97753304/"><i class="bi bi-linkedin"></i></a>
+                                    <a class="text-gradient" href="https://github.com/Jaykolate"><i class="bi bi-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- resume-->
+              <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        <!-- Experience Section-->
+                       
+                        <!-- Education Section-->
+                        <section id="resume">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="text-secondary fw-bolder mb-0">Education</h2>
+        <a class="btn btn-primary px-4 py-3"data-aos="fade-left" href="https://drive.google.com/file/d/1MlF9KYh8PljNHmjNCCL5gCHmp6G3fNv-/view?usp=sharing">
+            <div class="d-inline-block bi bi-download me-2" ></div>
+            Download Resume
+        </a>
+    </div>
+
+    <div class="row gx-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+            <div class="card shadow border-0 rounded-4 h-100">
+                <div class="card-body p-5">
+                    <div class="text-secondary fw-bolder mb-2">2023 - 2027</div>
+                    <div class="mb-2">
+                        <div class="small fw-bolder">Sinhgad Institute Of Technology And Science</div>
+                        <div class="small text-muted">(SITS) Narhe</div>
+                    </div>
+                    <div class="fst-italic mb-3">
+                        <div class="small text-muted">Bachelor of Engineering (B.E.), Computer Science</div>
+                    </div>
+                    <p class="mb-0">Maintaining a strong academic record with an Average CGPA of 9.07/10. .</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+            <div class="card shadow border-0 rounded-4 h-100">
+                <div class="card-body p-5">
+                     <div class="text-secondary fw-bolder mb-2">2021 - 2023</div>
+                    <div class="mb-2">
+                        <div class="small fw-bolder">Hind English Medium School</div>
+                        <div class="small text-muted">Viman Nagar, Pune</div>
+                    </div>
+                    <div class="fst-italic mb-3">
+                        <div class="small text-muted">CBSE, Science Stream - 70%</div>
+                    </div>
+                    <p class="mb-0">Focused on Physics, Chemistry, and Mathematics. Developed a foundational interest in problem-solving and technology.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                        <!-- Divider-->
+                        <div class="pb-5"></div>
+                        <!-- Skills Section-->
+                        <section>
+    <div class="card shadow border-0 rounded-4 mb-5" data-aos="zoom-in">
+        <div class="card-body p-5">
+            <div class="mb-0">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-code-slash"></i></div>
+                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Languages & Tools</span></h3>
+                </div>
+                <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-4">
+                    <div class="col"><div class="skill-card"><i class="devicon-java-plain"></i><p>Java</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-python-plain"></i><p>Python</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-html5-plain colored"></i><p>HTML5</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-css3-plain colored"></i><p>CSS3</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-javascript-plain colored"></i><p>JavaScript</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-nodejs-plain colored"></i><p>Node.js</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-bootstrap-plain colored"></i><p>Bootstrap</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-mongodb-plain colored"></i><p>MongoDB</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-mysql-plain"></i><p>MySQL</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-git-plain colored"></i><p>Git</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="devicon-github-original"></i><p>GitHub</p></div></div>
+                    <div class="col"><div class="skill-card"><i class="bi bi-braces"></i><p>DSA</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                  
+                         <section>
+                           
+                            
+                            <h2 class="text-primary fw-bolder mb-0">Experience</h2>
+                            <br>
+                            <div class="card shadow border-0 rounded-4 mb-5" data-aos="fade-right">
+                               
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-primary fw-bolder mb-2">Web Developer Intern</div>
+                                                <div class="small fw-bolder">Elite Softwares</div>
+                                                <div class="small text-muted">2025-Current</div>
+                                                <div class="small text-muted">Pune</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8"><div>Collaborated on creating a dynamic web project titled Portfolio, leveraging Python and the Django framework.
+Took ownership of both front-end and back-end development, refining technical and problem-solving skills.
+Thrived in a supportive environment, consistently delivering high-quality work while learning from industry
+professionals.</div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </section>
+                            <!--
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-primary fw-bolder mb-2">2017 - 2019</div>
+                                                <div class="small fw-bolder">SEM Specialist</div>
+                                                <div class="small text-muted">Wayne Enterprises</div>
+                                                <div class="small text-muted">Gotham City, NY</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                     -->
+                       <section id="certifications" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bolder text-secondary">Certifications</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+      <!-- Certificate 1 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0 rounded-4 text-center p-4 cert-card">
+          <div class="icon mb-3">
+            <i class="bi bi-patch-check-fill fs-1 text-primary"></i>
+          </div>
+          <h5 class="fw-bold">Java DSA</h5>
+          <p class="small text-muted mb-1">Apna College</p>
+          <p class="small text-muted">Issued July 2025</p>
+          <a class="btn btn-outline-dark btn-sm" href="https://www.linkedin.com/..." target="_blank">
+            <i class="bi bi-link-45deg me-2"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <!-- Certificate 2 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0 rounded-4 text-center p-4 cert-card">
+          <div class="icon mb-3">
+            <i class="bi bi-patch-check-fill fs-1 text-success"></i>
+          </div>
+          <h5 class="fw-bold">Web Development</h5>
+          <p class="small text-muted">Apna College</p>
+          <a class="btn btn-outline-dark btn-sm" href="https://www.linkedin.com/..." target="_blank">
+            <i class="bi bi-link-45deg me-2"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <!-- Certificate 3 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0 rounded-4 text-center p-4 cert-card">
+          <div class="icon mb-3">
+            <i class="bi bi-briefcase-fill fs-1 text-warning"></i>
+          </div>
+          <h5 class="fw-bold">Deloitte Australia</h5>
+          <p class="small text-muted">Technology Job Simulation</p>
+          <p class="small text-muted">Issued June 25th, 2025</p>
+          <a class="btn btn-outline-dark btn-sm" href="https://forage-uploads..." target="_blank">
+            <i class="bi bi-link-45deg me-2"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.cert-card {
+  transition: all 0.3s ease;
+}
+.cert-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: 1px solid #0d6efd;
+}
+</style>
+
+                         <section>
+                           
+                            <!-- Compitation and hackton Card 1-->
+                            <h2 class="text-primary fw-bolder mb-0">Hackathons or Competitions</h2>
+                            <br>
+                           
+                            <!-- Compatition and hackaton Card 2-->
+                            <div class="card shadow border-0 rounded-4 mb-5" data-aos="zoom-out-left">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-primary fw-bolder mb-2">August 2025</div>
+                                                <div class="small fw-bolder">Tutedude Hackathon</div>
+                                                <div class="small text-muted">Online National Hackathon</div>
+                                                <div class="small text-muted"> Built  using the <strong>Vibe Coding</strong> platform</div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8"><div>MicroMarket A virtual local market built in 48 hours during a hackathon.
+Suppliers create digital stalls to list products, and vendors can order directly.
+<h6>I handled frontend development  with my team of 4</h6>
+<a class="btn btn-gradient btn-sm mt-3" href="https://drive.google.com/file/d/1CnmXiM8AsOcxMpJCspdcs-xUEUhlenud/view?usp=sharing " target="_blank">
+    <i class="bi bi-patch-check-fill me-2"></i> View Certificate
+</a>
+
+</div></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+    </section>
+
+   <section id="projects" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h1 class="display-5 fw-bolder mb-0">
+        <span class="text-gradient d-inline">Projects</span>
+      </h1>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Project 1 -->
+      <div class="timeline-item left">
+        <div class="timeline-content shadow rounded-4 p-4">
+          <img src="assets/Screenshot 2025-08-03 212942.png" class="img-fluid rounded-3 mb-3" alt="Portfolio" />
+          <h3 class="fw-bold">Portfolio Website</h3>
+          <p>A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases my education, skills, and projects.</p>
+          <a href="https://github.com/Jaykolate/your-repo-name" target="_blank" class="btn btn-outline-dark btn-sm">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+    
+
+      <!-- Project 3 -->
+      <div class="timeline-item right">
+        <div class="timeline-content shadow rounded-4 p-4">
+          <img src="assets/Screenshot 2025-08-04 221952.png" class="img-fluid rounded-3 mb-3" alt="Rewear Exchange" />
+          <h3 class="fw-bold">Rewear Exchange App</h3>
+          <p>A community-driven platform that promotes sustainable fashion by enabling users to donate, exchange, or recycle gently-used clothes. (In progress)</p>
+          <a href="https://github.com/Jaykolate/rewear-platform.git" target="_blank" class="btn btn-outline-dark btn-sm">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- project 4 -->
+       <div class="timeline-item left">
+        <div class="timeline-content shadow rounded-4 p-4">
+          <img src="assets/Screenshot 2025-09-11 001818.png" class="img-fluid rounded-3 mb-3" alt="Rewear Exchange" />
+          <h3 class="fw-bold">NoteShare</h3>
+          <p>NotesShare Web is a collaborative platform where students can upload, share, and access academic notes in one place.</p>
+          <a href="https://github.com/Jaykolate/NoteShare" target="_blank" class="btn btn-outline-dark btn-sm">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content shadow rounded-4 p-4">
+          <img src="assets/Screenshot 2025-09-11 005154.png" class="img-fluid rounded-3 mb-3" alt="Rewear Exchange" />
+          <h3 class="fw-bold">To Do List</h3>
+          <p>A web application to help users organize and manage daily tasks efficiently. Users can add, edit, mark as completed, and delete tasks. The app is fully responsive and features a clean, modern interface for easy task tracking.</p>
+          <a href="https://github.com/Jaykolate/NoteShare" target="_blank" class="btn btn-outline-dark btn-sm">
+            <i class="bi bi-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+            <!-- Call to action section-->
+           
+    </section>
+
+    <section id="contact">
+        
+        <!-- Add your contact content here -->
+          <section class="py-5">
+                <div class="container px-5">
+                    <!-- Contact form-->
+                    <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+                        <div class="text-center mb-5">
+                            <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+                            <h1 class="fw-bolder">Get in touch</h1>
+                            <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
+                        </div>
+                        <div class="row gx-5 justify-content-center">
+                            <div class="col-lg-8 col-xl-6">
+                                <!-- * * * * * * * * * * * * * * *-->
+                                <!-- * * SB Forms Contact Form * *-->
+                                <!-- * * * * * * * * * * * * * * *-->
+                                <!-- This form is pre-integrated with SB Forms.-->
+                                <!-- To make this form functional, sign up at-->
+                                <!-- https://startbootstrap.com/solution/contact-forms-->
+                                <!-- to get an API token!-->
+                                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                    <!-- Name input-->
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <label for="name">Full name</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                    </div>
+                                    <!-- Email address input-->
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                        <label for="email">Email address</label>
+                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                    </div>
+                                    <!-- Phone number input-->
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                                        <label for="phone">Phone number</label>
+                                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                    </div>
+                                    <!-- Message input-->
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                        <label for="message">Message</label>
+                                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                    </div>
+                                    <!-- Submit success message-->
+                                    <!---->
+                                    <!-- This is what your users will see when the form-->
+                                    <!-- has successfully submitted-->
+                                    <div class="d-none" id="submitSuccessMessage">
+                                        <div class="text-center mb-3">
+                                            <div class="fw-bolder">Form submission successful!</div>
+                                            To activate this form, sign up at
+                                            <br />
+                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                        </div>
+                                    </div>
+                                    <!-- Submit error message-->
+                                    <!---->
+                                    <!-- This is what your users will see when there is-->
+                                    <!-- an error submitting the form-->
+                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                    <!-- Submit Button-->
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </section>
+     <footer class="bg-light py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Jay 2026</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+  AOS.init();
+</script>
+</body>
+</html>
