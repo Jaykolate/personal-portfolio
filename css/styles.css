@@ -4791,7 +4791,7 @@ textarea.form-control-lg {
   }
 }
 
-.list-group {
+list-group {
   --bs-list-group-color: #212529;
   --bs-list-group-bg: #fff;
   --bs-list-group-border-color: rgba(0, 0, 0, 0.125);
@@ -4924,7 +4924,7 @@ textarea.form-control-lg {
     border-left-width: var(--bs-list-group-border-width);
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 768p.x) {
   .list-group-horizontal-md {
     flex-direction: row;
   }
@@ -11743,3 +11743,13 @@ html {
     left: -2vw;
   }
 }
+@media (max-width: 768px) {
+  .min-vh-100 {
+    min-height: auto !important;
+  }
+
+  .vh-100 {
+    height: auto !important;
+  }
+}
+
