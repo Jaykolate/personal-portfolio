@@ -263,7 +263,7 @@
     @media(max-width: 768px) { .hero-image-wrap { display: none; } }
 
     /* ABOUT */
-    #about { padding: 6rem 5%; background: var(--bg2); }
+    #about { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
     .section-header { text-align: center; margin-bottom: 4rem; }
     .section-label {
       display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
@@ -314,7 +314,7 @@
     .skill-chip span { font-size: 0.78rem; font-weight: 500; color: var(--text-muted); }
 
     /* RESUME/EDUCATION */
-    #resume { padding: 6rem 5%; background: var(--bg2); }
+    #resume { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
     .resume-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 900px; margin: 0 auto 3rem; }
     .download-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -357,7 +357,7 @@
     .exp-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; flex: 1; }
 
     /* CERTIFICATIONS */
-    #certifications { padding: 6rem 5%; background: var(--bg2); }
+    #certifications { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
     .cert-card {
       background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
@@ -399,7 +399,7 @@
     .hack-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; flex: 1; }
 
     /* ── PROJECTS CAROUSEL (Premium Redesign) ── */
-    #projects { padding: 6rem 5%; background: var(--bg2); overflow: hidden; }
+    #projects { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); overflow: hidden; }
     .proj-outer { max-width: 1000px; margin: 0 auto; position: relative; }
 
     /* Ghost number watermark */
@@ -1077,8 +1077,8 @@
 
   /* ── Shooting / falling stars ── */
   class ShootingStar {
-    constructor() { this.reset(); }
-    reset() {
+    constructor() { this.active = false; this.resetProps(); }
+    resetProps() {
       this.x      = Math.random() * canvas.width * 1.2;
       this.y      = Math.random() * canvas.height * 0.4;
       this.len    = Math.random() * 180 + 80;
@@ -1088,16 +1088,20 @@
       this.fade   = 'in';
       this.width  = Math.random() * 1.5 + 0.5;
       this.color  = Math.random() > 0.5 ? '#a78bfa' : '#06b6d4';
+    }
+    scheduleNext() {
       this.active = false;
-      this.delay  = Math.random() * 6000;
+      this.resetProps();
+      // respawn after a short random pause so stream stays continuous
+      setTimeout(() => { this.active = true; }, Math.random() * 2000 + 300);
     }
     update() {
       if (!this.active) return;
       this.x += Math.cos(this.angle) * this.speed;
       this.y += Math.sin(this.angle) * this.speed;
       if (this.fade === 'in')  { this.alpha += 0.06; if (this.alpha >= 1)   this.fade = 'out'; }
-      if (this.fade === 'out') { this.alpha -= 0.03; if (this.alpha <= 0)   this.reset(); }
-      if (this.x > canvas.width + 200 || this.y > canvas.height + 200) this.reset();
+      if (this.fade === 'out') { this.alpha -= 0.03; if (this.alpha <= 0)   this.scheduleNext(); }
+      if (this.x > canvas.width + 200 || this.y > canvas.height + 200) this.scheduleNext();
     }
     draw() {
       if (!this.active || this.alpha <= 0) return;
@@ -1127,10 +1131,10 @@
     }
   }
 
-  // Create a pool of shooting stars, activate on staggered delays
-  for (let i = 0; i < 10; i++) shootingStars.push(new ShootingStar());
-  shootingStars.forEach(s => {
-    setTimeout(() => { s.active = true; }, s.delay);
+  // Create a pool of shooting stars with staggered initial start times
+  for (let i = 0; i < 12; i++) shootingStars.push(new ShootingStar());
+  shootingStars.forEach((s, i) => {
+    setTimeout(() => { s.active = true; }, i * 400 + Math.random() * 500);
   });
 
   /* ── Floating particle network ── */
