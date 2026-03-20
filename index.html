@@ -398,36 +398,146 @@
     .hack-platform { font-size: 0.82rem; color: var(--text-muted); }
     .hack-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; flex: 1; }
 
-    /* PROJECTS */
-    #projects { padding: 6rem 5%; background: var(--bg2); }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    /* ── PROJECTS CAROUSEL (Premium Redesign) ── */
+    #projects { padding: 6rem 5%; background: var(--bg2); overflow: hidden; }
+    .proj-outer { max-width: 1000px; margin: 0 auto; position: relative; }
+
+    /* Ghost number watermark */
+    .proj-ghost-num {
+      position: absolute; top: -2rem; right: -1rem;
+      font-family: var(--font2); font-size: 12rem; font-weight: 900;
+      line-height: 1; color: transparent;
+      -webkit-text-stroke: 1px rgba(124,58,237,0.12);
+      pointer-events: none; user-select: none;
+      transition: all 0.5s ease; z-index: 0;
+    }
+
+    /* Top bar: counter + progress */
+    .proj-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem; position: relative; z-index: 2;
+    }
+    .proj-counter {
+      font-family: var(--font2); font-size: 0.85rem; font-weight: 700;
+      color: var(--text-muted); letter-spacing: 0.08em;
+    }
+    .proj-counter span { color: var(--accent); font-size: 1.3rem; font-weight: 900; }
+    .proj-progress-track {
+      flex: 1; height: 3px; background: rgba(255,255,255,0.07);
+      border-radius: 10px; margin: 0 1.5rem; overflow: hidden;
+    }
+    .proj-progress-fill {
+      height: 100%; background: var(--gradient);
+      border-radius: 10px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .proj-nav-top { display: flex; gap: 0.6rem; }
+    .proj-nav-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--card-border); background: var(--card);
+      color: var(--text); cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .proj-nav-btn:hover {
+      background: var(--gradient); border-color: transparent;
+      color: #fff; box-shadow: 0 4px 20px rgba(124,58,237,0.45);
+      transform: scale(1.08);
+    }
+
+    /* Viewport + track */
+    .proj-carousel-viewport { overflow: hidden; border-radius: 20px; position: relative; z-index: 2; }
+    .proj-carousel-track {
+      display: flex;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Card — horizontal split */
     .project-card {
-      background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-      overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column;
+      min-width: 100%;
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      min-height: 400px;
     }
-    .project-card:hover { transform: translateY(-8px); border-color: rgba(124,58,237,0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-    .project-img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s; }
-    .project-card:hover .project-img { transform: scale(1.05); }
-    .project-img-wrap { overflow: hidden; position: relative; }
+    @media(max-width: 700px) { .project-card { grid-template-columns: 1fr; } }
+
+    /* Image side */
+    .project-img-wrap {
+      position: relative; overflow: hidden;
+      background: #0a0a0f;    /* dark bg so contain doesn't show ugly gaps */
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-img {
+      width: 100%; height: 100%;
+      object-fit: contain;         /* show the full screenshot — no cropping */
+      object-position: center top; /* align from top for tall screenshots */
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-img { transform: scale(1.03); }
+    @media(max-width: 700px) {
+      .project-img-wrap { min-height: 200px; }
+    }
+    /* Gradient overlay on image */
+    .project-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(10,10,15,0.35) 0%, transparent 60%);
+      pointer-events: none;
+    }
     .project-tag {
-      position: absolute; top: 12px; left: 12px;
-      background: rgba(10,10,15,0.8); backdrop-filter: blur(10px);
-      color: var(--accent2); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
-      padding: 0.25rem 0.75rem; border-radius: 50px; border: 1px solid rgba(6,182,212,0.3);
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      background: rgba(10,10,15,0.75); backdrop-filter: blur(12px);
+      color: var(--accent2); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.3rem 0.9rem; border-radius: 50px;
+      border: 1px solid rgba(6,182,212,0.35);
+      text-transform: uppercase;
     }
-    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .project-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
-    .project-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin-bottom: 1.25rem; }
-    .project-footer { display: flex; gap: 0.75rem; }
+
+    /* Content side */
+    .project-body {
+      padding: 2.5rem 2rem; display: flex; flex-direction: column;
+      justify-content: center; position: relative; overflow: hidden;
+    }
+    /* Subtle corner glow inside card */
+    .project-body::before {
+      content: ''; position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .project-num {
+      font-family: var(--font2); font-size: 0.72rem; font-weight: 700;
+      color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .project-title {
+      font-family: var(--font2); font-size: 1.35rem; font-weight: 800;
+      color: var(--text); margin-bottom: 0.9rem; line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.875rem; color: var(--text-muted);
+      line-height: 1.8; flex: 1; margin-bottom: 1.75rem;
+    }
+    .project-footer { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .proj-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 50px;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.82rem; font-weight: 600; padding: 0.55rem 1.2rem; border-radius: 50px;
       border: 1px solid var(--card-border); color: var(--text-muted); text-decoration: none;
       transition: all 0.3s; background: rgba(255,255,255,0.04);
     }
-    .proj-btn:hover { background: var(--gradient); border-color: transparent; color: #fff; }
-    .proj-btn-primary { background: rgba(124,58,237,0.15); border-color: rgba(124,58,237,0.3); color: #a78bfa; }
+    .proj-btn:hover { background: var(--gradient); border-color: transparent; color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
+    .proj-btn-primary { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.35); color: #a78bfa; }
     .proj-btn-primary:hover { background: var(--gradient); border-color: transparent; color: #fff; }
+
+    /* Dot strip at bottom */
+    .proj-dots-row { display: flex; gap: 0.45rem; margin-top: 1.25rem; justify-content: center; }
+    .proj-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); cursor: pointer;
+      transition: all 0.35s;
+    }
+    .proj-dot.active { background: var(--accent); width: 28px; border-radius: 4px; }
 
     /* CONTACT */
     #contact { padding: 6rem 5%; }
@@ -710,61 +820,116 @@
     <div class="section-label">Portfolio</div>
     <h2 class="section-title">Featured <span>Projects</span></h2>
   </div>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-img-wrap">
-        <img src="./assets/Screenshot 2025-08-03 212942.png" alt="Portfolio Website" class="project-img" />
-        <span class="project-tag">HTML · CSS · JS</span>
+  <div class="proj-outer reveal">
+    <!-- Ghost number watermark -->
+    <div class="proj-ghost-num" id="projGhostNum">01</div>
+
+    <!-- Top bar: counter + progress bar + nav arrows -->
+    <div class="proj-topbar">
+      <div class="proj-counter"><span id="projCurNum">01</span> / <span id="projTotalNum">05</span></div>
+      <div class="proj-progress-track">
+        <div class="proj-progress-fill" id="projProgress" style="width:20%"></div>
       </div>
-      <div class="project-body">
-        <div class="project-title">Portfolio Website</div>
-        <div class="project-desc">A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases education, skills, and projects with smooth animations.</div>
-        <div class="project-footer">
-          <a href="https://github.com/Jaykolate/your-repo-name" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-        </div>
-      </div>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-img-wrap">
-        <img src="./assets/reware.png" alt="Threadly - Pre-loved Fashion Marketplace" class="project-img" />
-        <span class="project-tag">React · Node.js · Socket.IO</span>
-      </div>
-      <div class="project-body">
-        <div class="project-title">Threadly — Pre-loved Fashion Marketplace</div>
-        <div class="project-desc">
-          Full-stack sustainable fashion marketplace for buying, selling &amp; swapping pre-loved clothing. Features real-time chat (Socket.IO), JWT auth, Stripe payments, Cloudinary image storage, AI-assisted listing creation via Google Gemini API, a unique item-swap system, and secure password reset with SHA-256 + Nodemailer.
-        </div>
-        <div class="project-footer" style="flex-wrap:wrap;gap:0.5rem;">
-          <a href="https://github.com/Jaykolate" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-        </div>
+      <div class="proj-nav-top">
+        <button class="proj-nav-btn" id="projPrev" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
+        <button class="proj-nav-btn" id="projNext" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
       </div>
     </div>
-    <div class="project-card reveal">
-      <div class="project-img-wrap">
-        <img src="./assets/Screenshot 2025-09-11 001818.png" alt="NoteShare" class="project-img" />
-        <span class="project-tag">HTML · CSS · JavaScript</span>
-      </div>
-      <div class="project-body">
-        <div class="project-title">NoteShare</div>
-        <div class="project-desc">A collaborative platform where students can upload, share, and access academic notes in one place. Streamlines knowledge sharing across classrooms.</div>
-        <div class="project-footer">
-          <a href="https://github.com/Jaykolate/NoteShare" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+
+    <!-- Carousel -->
+    <div class="proj-carousel-viewport">
+      <div class="proj-carousel-track" id="projTrack">
+
+        <!-- Card 1 -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="./assets/portfilio.png" alt="Portfolio Website" class="project-img" />
+            <span class="project-tag">HTML &middot; CSS &middot; JS</span>
+          </div>
+          <div class="project-body">
+            <div class="project-num">Project 01</div>
+            <div class="project-title">Portfolio Website</div>
+            <div class="project-desc">A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases education, skills, and projects with smooth animations.</div>
+            <div class="project-footer">
+              <a href="https://github.com/Jaykolate/your-repo-name" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://jaykolate.github.io/personal-portfolio/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
+            </div>
+          </div>
         </div>
+
+        <!-- Card 2 -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="./assets/reware.png" alt="Threadly" class="project-img" />
+            <span class="project-tag">React &middot; Node.js &middot; Socket.IO</span>
+          </div>
+          <div class="project-body">
+            <div class="project-num">Project 02</div>
+            <div class="project-title">Threadly &mdash; Pre-loved Fashion Marketplace</div>
+            <div class="project-desc">Full-stack sustainable fashion marketplace for buying, selling &amp; swapping pre-loved clothing. Features real-time chat (Socket.IO), JWT auth, Stripe payments, Cloudinary image storage, AI-assisted listing creation via Google Gemini API, and secure password reset with SHA-256 + Nodemailer.</div>
+            <div class="project-footer">
+              <a href="https://github.com/Jaykolate" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://threadly-liart.vercel.app/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="./assets/Screenshot 2025-09-11 001818.png" alt="NoteShare" class="project-img" />
+            <span class="project-tag">HTML &middot; CSS &middot; JavaScript</span>
+          </div>
+          <div class="project-body">
+            <div class="project-num">Project 03</div>
+            <div class="project-title">NoteShare</div>
+            <div class="project-desc">A collaborative platform where students can upload, share, and access academic notes in one place. Streamlines knowledge sharing across classrooms and helps peers learn together more efficiently.</div>
+            <div class="project-footer">
+              <a href="https://github.com/Jaykolate/NoteShare" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+              <a href="#" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="./assets/staynest.png" alt="StayNest" class="project-img" />
+            <span class="project-tag">Node &middot; Express &middot; MongoDB</span>
+          </div>
+          <div class="project-body">
+            <div class="project-num">Project 04</div>
+            <div class="project-title">StayNest</div>
+            <div class="project-desc">A full-stack accommodation booking platform inspired by Airbnb. Users can explore listings, create accounts, add properties, and post reviews — built with Node.js, Express, and MongoDB.</div>
+            <div class="project-footer">
+              <a href="https://github.com/Jaykolate/StayNest" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://staynest-km1v.onrender.com" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="./assets/paircode.png" alt="PairCode" class="project-img" />
+            <span class="project-tag">Node.js &middot; Socket.IO &middot; CodeMirror</span>
+          </div>
+          <div class="project-body">
+            <div class="project-num">Project 05</div>
+            <div class="project-title">PairCode &mdash; Real-time Collaborative Editor</div>
+            <div class="project-desc">A real-time pair programming platform with shared rooms, language selection (JS &amp; Java), live user list, and WebSocket code sync — powered by CodeMirror and Socket.IO.</div>
+            <div class="project-footer">
+              <a href="https://github.com/Jaykolate/PairCode" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
+              <a href="https://paircode-1-lw6b.onrender.com/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div class="project-card reveal">
-      <div class="project-img-wrap">
-        <img src="./assets/staynest.png" alt="StayNest" class="project-img" />
-        <span class="project-tag">Node · Express · MongoDB</span>
-      </div>
-      <div class="project-body">
-        <div class="project-title">StayNest</div>
-        <div class="project-desc">A full-stack accommodation booking platform inspired by Airbnb. Users can explore listings, create accounts, add properties, and post reviews.</div>
-        <div class="project-footer">
-          <a href="https://github.com/Jaykolate/StayNest" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-        </div>
-      </div>
-    </div>
+
+    <!-- Dot strip -->
+    <div class="proj-dots-row" id="projDots"></div>
   </div>
 </section>
 
@@ -1081,6 +1246,67 @@ document.getElementById('navToggle').addEventListener('click', function(){
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
+
+// PROJECTS CAROUSEL
+(function(){
+  const track    = document.getElementById('projTrack');
+  const dotsWrap = document.getElementById('projDots');
+  const ghost    = document.getElementById('projGhostNum');
+  const curEl    = document.getElementById('projCurNum');
+  const totalEl  = document.getElementById('projTotalNum');
+  const progFill = document.getElementById('projProgress');
+  const cards    = track ? track.querySelectorAll('.project-card') : [];
+  const total    = cards.length;
+  if (!total) return;
+  let current = 0;
+
+  // Set total count
+  if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'proj-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+
+    // Slide
+    track.style.transform = `translateX(-${current * 100}%)`;
+
+    // Dots
+    dotsWrap.querySelectorAll('.proj-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current)
+    );
+
+    // Ghost watermark number
+    if (ghost) ghost.textContent = pad(current);
+
+    // Counter
+    if (curEl) curEl.textContent = pad(current);
+
+    // Progress bar
+    if (progFill) progFill.style.width = `${((current + 1) / total) * 100}%`;
+  }
+
+  document.getElementById('projPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('projNext').addEventListener('click', () => goTo(current + 1));
+
+  // Keyboard support when section is visible
+  document.addEventListener('keydown', e => {
+    const sec = document.getElementById('projects');
+    const r   = sec.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+    }
+  });
+})();
 </script>
 </body>
 </html>
