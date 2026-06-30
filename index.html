@@ -194,102 +194,26 @@
       position: relative;
       min-width: 320px;
     }
-    /* Outer ambient glow */
-    .hero-image-wrap::before {
-      content: '';
-      position: absolute;
-      width: 440px; height: 440px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, rgba(6,182,212,0.06) 50%, transparent 70%);
-      animation: pulseGlow 3s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-orbit-container {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 440px; height: 440px;
-      display: flex; align-items: center; justify-content: center;
-      perspective: 1000px;
-      pointer-events: none;
-      z-index: 1;
-    }
-    /* Spinning 3D tilted orbit rings */
-    .hero-orbit {
-      position: absolute;
-      width: 380px; height: 380px;
-      border-radius: 50%;
-      border: 1px solid rgba(124,58,237,0.3);
-      box-shadow: 0 0 10px rgba(124,58,237,0.08), inset 0 0 10px rgba(124,58,237,0.08);
-      transform-style: preserve-3d;
-      animation: spinOrbit1 18s linear infinite;
-    }
-    .hero-orbit-2 {
-      position: absolute;
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      border: 1px solid rgba(6,182,212,0.25);
-      box-shadow: 0 0 10px rgba(6,182,212,0.08), inset 0 0 10px rgba(6,182,212,0.08);
-      transform-style: preserve-3d;
-      animation: spinOrbit2 12s linear infinite reverse;
-    }
-    /* Orbiting dots on the rings */
-    .orbit-dot {
-      position: absolute;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: #a78bfa;
-      box-shadow: 0 0 15px #a78bfa, 0 0 30px #a78bfa;
-      top: -6px; left: calc(50% - 6px);
-    }
-    .orbit-dot-2 {
-      position: absolute;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #06b6d4;
-      box-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4;
-      bottom: -5px; left: calc(50% - 5px);
-    }
     /* The main image frame */
     .hero-image-frame {
       position: relative;
-      width: 290px; height: 290px;
-      border-radius: 50%;
+      width: 280px; height: 350px;
+      border-radius: 24px;
       display: flex; align-items: center; justify-content: center;
       background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(10px);
       padding: 8px;
-      animation: floatBob 5s ease-in-out infinite;
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
       z-index: 2;
+      transition: all 0.3s ease;
     }
-    .hero-image-frame::before {
-      content: '';
-      position: absolute; inset: -4px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
-      background-size: 300% 300%;
-      z-index: -1;
-      animation: borderGlow 6s linear infinite;
-      filter: blur(2px);
-    }
-    .hero-image-frame::after {
-      content: '';
-      position: absolute; inset: -10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-      opacity: 0.3;
-      filter: blur(15px);
-      z-index: -2;
-      animation: borderGlow 6s linear infinite;
-    }
-    @keyframes borderGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .hero-image-frame:hover {
+      border-color: rgba(124, 58, 237, 0.5);
+      box-shadow: 0 25px 55px rgba(124, 58, 237, 0.15);
     }
     .hero-image-inner {
-      width: 100%; height: 100%; border-radius: 50%;
+      width: 100%; height: 100%; border-radius: 16px;
       overflow: hidden;
       background: var(--bg3);
       border: 2px solid rgba(255,255,255,0.05);
@@ -297,51 +221,10 @@
     .hero-image-inner img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 15%;
-      transform: translateY(-12px) scale(1.05);
+      object-position: center top;
       filter: brightness(1.05) contrast(1.05);
     }
-    /* Floating skill badges */
-    .hero-badge-float {
-      position: absolute;
-      display: flex; align-items: center; gap: 0.5rem;
-      background: rgba(16, 16, 24, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 50px;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem; font-weight: 600;
-      color: var(--text); white-space: nowrap;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 3;
-    }
-    .hero-badge-float:hover {
-      transform: scale(1.1) translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 15px 30px rgba(124,58,237,0.3);
-      background: rgba(124,58,237,0.1);
-      cursor: pointer;
-    }
-    .hero-badge-float i { font-size: 0.95rem; }
-    .badge-tl { top: 15px; left: -50px; animation: floatBadge1 4s ease-in-out infinite; }
-    .badge-tr { top: 65px; right: -45px; animation: floatBadge2 4.5s ease-in-out infinite; }
-    .badge-bl { bottom: 55px; left: -45px; animation: floatBadge3 4.2s ease-in-out infinite; }
-    .badge-br { bottom: 15px; right: -40px; animation: floatBadge4 3.8s ease-in-out infinite; }
 
-    @keyframes pulseGlow { 0%,100%{opacity:0.6;transform:scale(1);} 50%{opacity:1;transform:scale(1.05);} }
-    @keyframes spinOrbit1 {
-      from { transform: rotateX(60deg) rotateY(-15deg) rotateZ(0deg); }
-      to { transform: rotateX(60deg) rotateY(-15deg) rotateZ(360deg); }
-    }
-    @keyframes spinOrbit2 {
-      from { transform: rotateX(60deg) rotateY(25deg) rotateZ(0deg); }
-      to { transform: rotateX(60deg) rotateY(25deg) rotateZ(360deg); }
-    }
-    @keyframes floatBadge1 { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-8px) rotate(1deg);} }
-    @keyframes floatBadge2 { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-10px) rotate(-1deg);} }
-    @keyframes floatBadge3 { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-7px) rotate(-1.5deg);} }
-    @keyframes floatBadge4 { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-9px) rotate(1.5deg);} }
     .hero-socials {
       display: flex; gap: 1.2rem; margin-top: 2.5rem;
       animation: fadeInUp 0.6s 0.6s ease both;
@@ -402,30 +285,81 @@
       color: var(--text); line-height: 1.2;
     }
     .section-title span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; align-items: center; }
+    .about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: center; }
     .about-text p { color: var(--text-muted); line-height: 1.9; font-size: 1rem; margin-bottom: 1.2rem; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
     .stat-card {
-      background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-      padding: 1.25rem; text-align: center; transition: all 0.3s;
+      background: var(--card); border: 1px solid var(--card-border); border-radius: 16px;
+      padding: 1.5rem 1.25rem; text-align: center; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
     }
-    .stat-card:hover { border-color: var(--accent); background: rgba(124,58,237,0.08); transform: translateY(-3px); }
-    .stat-number { font-family: var(--font2); font-size: 2rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .stat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(124, 58, 237, 0.05));
+      opacity: 0; transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-card:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.15);
+    }
+    .stat-number { font-family: var(--font2); font-size: 2.2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem; font-weight: 500; }
     .about-visual {
-      background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-      padding: 2rem; display: flex; flex-direction: column; gap: 1rem;
+      background: var(--card); border: 1px solid var(--card-border); border-radius: 24px;
+      padding: 2.5rem 2rem 2.2rem; display: flex; flex-direction: column; gap: 1.5rem;
+      position: relative; overflow: hidden;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
     }
-    .about-card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-    .about-avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent); }
-    .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .about-card-info h4 { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .about-card-info p { font-size: 0.8rem; color: var(--text-muted); }
-    .skill-bar-wrap { display: flex; flex-direction: column; gap: 0.75rem; }
-    .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.2rem; }
-    .skill-bar-track { height: 6px; background: rgba(255,255,255,0.07); border-radius: 10px; overflow: hidden; }
-    .skill-bar-fill { height: 100%; border-radius: 10px; background: var(--gradient); transition: width 1.5s cubic-bezier(0.23,1,0.32,1); }
-    @media(max-width: 768px) { .about-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: 1fr 1fr; } }
+    .about-visual:hover {
+      border-color: rgba(6, 182, 212, 0.25);
+      box-shadow: 0 30px 65px rgba(6, 182, 212, 0.08);
+    }
+    /* macOS-style code window accents */
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      top: 1.25rem; left: 1.5rem;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #ff5f56;
+      box-shadow: 14px 0 0 #ffbd2e, 28px 0 0 #27c93f;
+      opacity: 0.65;
+    }
+    .about-card-top { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 0.5rem; margin-top: 0.75rem; }
+    .about-avatar {
+      width: 60px; height: 60px; border-radius: 14px; overflow: hidden;
+      border: 2px solid var(--accent); box-shadow: 0 6px 15px rgba(124, 58, 237, 0.2);
+      transition: transform 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(124, 58, 237, 0.08); color: var(--accent); font-size: 1.5rem;
+    }
+    .about-visual:hover .about-avatar { transform: scale(1.05) rotate(2deg); }
+    .about-card-info h4 { font-size: 1.05rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+    .about-card-info p { font-size: 0.8rem; color: var(--accent2); font-weight: 500; }
+    .skill-bar-wrap { display: flex; flex-direction: column; gap: 1.2rem; }
+    .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.1rem; font-weight: 500; }
+    .skill-bar-label span:first-child { color: var(--text); }
+    .skill-bar-track { height: 6px; background: rgba(255,255,255,0.05); border-radius: 50px; overflow: visible; position: relative; }
+    .skill-bar-fill { height: 100%; border-radius: 50px; background: var(--gradient); transition: width 1.5s cubic-bezier(0.23,1,0.32,1); position: relative; }
+    /* Premium glowing dot at the end of progress bars */
+    .skill-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    @media(max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* SKILLS */
     #skills { padding: 6rem 5%; }
@@ -627,6 +561,11 @@
       .exp-timeline::before {
         left: 5px;
       }
+      .exp-card {
+        padding: 1.5rem;
+        gap: 1rem;
+        flex-direction: column;
+      }
       .exp-card::after {
         left: calc(-1.8rem - 1px);
         top: 2rem;
@@ -636,7 +575,18 @@
       }
       .exp-left {
         min-width: 100%;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+      .exp-desc {
+        min-width: 0;
+        width: 100%;
+      }
+      .exp-company {
+        font-size: 0.85rem;
+        word-break: break-word;
+      }
+      .exp-list li {
+        font-size: 0.85rem;
       }
     }
 
@@ -666,162 +616,243 @@
     }
     .cert-btn:hover { background: var(--gradient); border-color: transparent; color: #fff; }
 
-    /* HACKATHONS */
-    #hackathons { padding: 6rem 5%; }
-    .hack-card {
-      max-width: 900px; margin: 0 auto;
-      background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-      padding: 2rem; display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
-      transition: all 0.3s; position: relative; overflow: hidden;
-    }
-    .hack-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(135deg, #06b6d4, #7c3aed); }
-    .hack-card:hover { transform: translateY(-4px); border-color: rgba(6,182,212,0.3); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
-    .hack-left { min-width: 180px; }
-    .hack-event { font-size: 1rem; font-weight: 700; color: var(--accent2); margin-bottom: 0.25rem; }
-    .hack-type { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .hack-platform { font-size: 0.82rem; color: var(--text-muted); }
-    .hack-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; flex: 1; }
+    /* ── PROJECTS SHOWCASE CAROUSEL ── */
+    #projects { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
-    /* ── PROJECTS CAROUSEL (Premium Redesign) ── */
-    #projects { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); overflow: hidden; }
-    .proj-outer { max-width: 1000px; margin: 0 auto; position: relative; }
-
-    /* Ghost number watermark */
-    .proj-ghost-num {
-      position: absolute; top: -2rem; right: -1rem;
-      font-family: var(--font2); font-size: 12rem; font-weight: 900;
-      line-height: 1; color: transparent;
-      -webkit-text-stroke: 1px rgba(124,58,237,0.12);
-      pointer-events: none; user-select: none;
-      transition: all 0.5s ease; z-index: 0;
-    }
-
-    /* Top bar: counter + progress */
+    /* Top bar: counter + progress + arrows */
     .proj-topbar {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.5rem; position: relative; z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
     .proj-counter {
-      font-family: var(--font2); font-size: 0.85rem; font-weight: 700;
-      color: var(--text-muted); letter-spacing: 0.08em;
+      font-family: var(--font2);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
     }
-    .proj-counter span { color: var(--accent); font-size: 1.3rem; font-weight: 900; }
+    .proj-counter span:first-child {
+      color: var(--accent2);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
     .proj-progress-track {
-      flex: 1; height: 3px; background: rgba(255,255,255,0.07);
-      border-radius: 10px; margin: 0 1.5rem; overflow: hidden;
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 10px;
+      overflow: hidden;
     }
     .proj-progress-fill {
-      height: 100%; background: var(--gradient);
-      border-radius: 10px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 10px;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
     }
-    .proj-nav-top { display: flex; gap: 0.6rem; }
-    .proj-nav-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--card-border); background: var(--card);
-      color: var(--text); cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
+
+    .proj-showcase {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      min-height: 420px;
+    }
+
+    /* ── Left: Image mockup ── */
+    .proj-visual-column {
+      position: relative;
+    }
+    .proj-mockup-wrapper {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0c0c18;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.08);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .proj-mockup-wrapper:hover {
+      border-color: rgba(124,58,237,0.3);
+      box-shadow: 0 30px 70px rgba(124,58,237,0.12), 0 0 0 1px rgba(124,58,237,0.2);
+    }
+    .proj-mockup-inner {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.25s ease, transform 0.3s ease;
+      background: #0a0a14;
+    }
+    .proj-mockup-inner.animating {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    .proj-mockup-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .proj-mockup-tag {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(10,10,18,0.8);
+      backdrop-filter: blur(14px);
+      color: var(--accent2);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      border: 1px solid rgba(6,182,212,0.3);
+      transition: opacity 0.25s ease;
+      z-index: 2;
+    }
+    .proj-mockup-inner.animating ~ .proj-mockup-tag { opacity: 0; }
+
+    /* ── Right: Info panel ── */
+    .proj-info-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .proj-info-content {
+      transition: opacity 0.25s ease, transform 0.3s ease;
+    }
+    .proj-info-content.animating {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .proj-info-num {
+      font-family: var(--font2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .proj-info-title {
+      font-family: var(--font2);
+      font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .proj-info-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.75rem;
+    }
+    .proj-info-footer {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Controls row: arrows + pagination ── */
+    .proj-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .proj-nav-arrows {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .proj-control-btn {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.3s;
     }
-    .proj-nav-btn:hover {
-      background: var(--gradient); border-color: transparent;
-      color: #fff; box-shadow: 0 4px 20px rgba(124,58,237,0.45);
+    .proj-control-btn:hover {
+      background: var(--gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.4);
       transform: scale(1.08);
     }
 
-    /* Viewport + track */
-    .proj-carousel-viewport { overflow: hidden; border-radius: 20px; position: relative; z-index: 2; }
-    .proj-carousel-track {
+    /* Pagination numbered tabs */
+    .proj-pagination {
       display: flex;
-      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 0.35rem;
+    }
+    .pagination-tab {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pagination-tab:hover {
+      border-color: rgba(124,58,237,0.4);
+      color: var(--text);
+      background: rgba(124,58,237,0.08);
+    }
+    .pagination-tab.active {
+      background: var(--gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+      transform: scale(1.08);
     }
 
-    /* Card — horizontal split */
-    .project-card {
-      min-width: 100%;
-      display: grid; grid-template-columns: 1.1fr 1fr;
-      background: var(--card); border: 1px solid var(--card-border);
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      min-height: 400px;
-    }
-    @media(max-width: 700px) { .project-card { grid-template-columns: 1fr; } }
-
-    /* Image side */
-    .project-img-wrap {
-      position: relative; overflow: hidden;
-      background: #0a0a0f;    /* dark bg so contain doesn't show ugly gaps */
-      display: flex; align-items: center; justify-content: center;
-    }
-    .project-img {
-      width: 100%; height: 100%;
-      object-fit: contain;         /* show the full screenshot — no cropping */
-      object-position: center top; /* align from top for tall screenshots */
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .project-card:hover .project-img { transform: scale(1.03); }
-    @media(max-width: 700px) {
-      .project-img-wrap { min-height: 200px; }
-    }
-    /* Gradient overlay on image */
-    .project-img-wrap::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(120deg, rgba(10,10,15,0.35) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .project-tag {
-      position: absolute; top: 16px; left: 16px; z-index: 2;
-      background: rgba(10,10,15,0.75); backdrop-filter: blur(12px);
-      color: var(--accent2); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-      padding: 0.3rem 0.9rem; border-radius: 50px;
-      border: 1px solid rgba(6,182,212,0.35);
-      text-transform: uppercase;
-    }
-
-    /* Content side */
-    .project-body {
-      padding: 2.5rem 2rem; display: flex; flex-direction: column;
-      justify-content: center; position: relative; overflow: hidden;
-    }
-    /* Subtle corner glow inside card */
-    .project-body::before {
-      content: ''; position: absolute; bottom: -60px; right: -60px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
-      pointer-events: none;
-    }
-    .project-num {
-      font-family: var(--font2); font-size: 0.72rem; font-weight: 700;
-      color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
-    .project-title {
-      font-family: var(--font2); font-size: 1.35rem; font-weight: 800;
-      color: var(--text); margin-bottom: 0.9rem; line-height: 1.3;
-    }
-    .project-desc {
-      font-size: 0.875rem; color: var(--text-muted);
-      line-height: 1.8; flex: 1; margin-bottom: 1.75rem;
-    }
-    .project-footer { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    /* Shared button styles (used in projects + elsewhere) */
     .proj-btn {
       display: inline-flex; align-items: center; gap: 0.45rem;
       font-size: 0.82rem; font-weight: 600; padding: 0.55rem 1.2rem; border-radius: 50px;
       border: 1px solid var(--card-border); color: var(--text-muted); text-decoration: none;
-      transition: all 0.3s; background: rgba(255,255,255,0.04);
+      transition: all 0.3s; background: rgba(255,255,255,0.04); cursor: pointer;
     }
     .proj-btn:hover { background: var(--gradient); border-color: transparent; color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.3); }
     .proj-btn-primary { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.35); color: #a78bfa; }
     .proj-btn-primary:hover { background: var(--gradient); border-color: transparent; color: #fff; }
 
-    /* Dot strip at bottom */
-    .proj-dots-row { display: flex; gap: 0.45rem; margin-top: 1.25rem; justify-content: center; }
-    .proj-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.15); cursor: pointer;
-      transition: all 0.35s;
+    /* ── Responsive ── */
+    @media(max-width: 900px) {
+      .proj-showcase {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .proj-mockup-inner { aspect-ratio: 16 / 9; }
     }
-    .proj-dot.active { background: var(--accent); width: 28px; border-radius: 4px; }
+    @media(max-width: 480px) {
+      .proj-controls-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .pagination-tab { width: 32px; height: 32px; font-size: 0.65rem; }
+      .proj-control-btn { width: 38px; height: 38px; }
+    }
 
     /* CONTACT */
     #contact { padding: 6rem 5%; }
@@ -1249,22 +1280,12 @@
       </div>
     </div>
     <div class="hero-image-wrap">
-      <!-- Orbit rings container -->
-      <div class="hero-orbit-container">
-        <div class="hero-orbit"><span class="orbit-dot"></span></div>
-        <div class="hero-orbit-2"><span class="orbit-dot-2"></span></div>
-      </div>
       <!-- Main image frame -->
       <div class="hero-image-frame">
         <div class="hero-image-inner">
           <img src="./assets/Remove background project.png" alt="Jay Kolate" />
         </div>
       </div>
-      <!-- Floating skill badges -->
-      <div class="hero-badge-float badge-tl"><i class="devicon-react-original colored"></i> React</div>
-      <div class="hero-badge-float badge-tr"><i class="devicon-nodejs-plain colored"></i> Node.js</div>
-      <div class="hero-badge-float badge-bl"><i class="devicon-java-plain" style="color:#f89820"></i> Java</div>
-      <div class="hero-badge-float badge-br"><i class="devicon-mongodb-plain colored"></i> MongoDB</div>
     </div>
   </div>
 </section>
@@ -1286,22 +1307,18 @@
           <div class="stat-label">Years Learning</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">4+</div>
+          <div class="stat-number">7+</div>
           <div class="stat-label">Projects Built</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">3</div>
           <div class="stat-label">Certifications</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">1</div>
-          <div class="stat-label">Hackathon</div>
-        </div>
       </div>
     </div>
     <div class="about-visual reveal-right">
       <div class="about-card-top">
-        <div class="about-avatar"><img src="./assets/Remove background project.png" alt="Jay" /></div>
+        <div class="about-avatar"><i class="bi bi-code-slash"></i></div>
         <div class="about-card-info">
           <h4>Jay Kolate</h4>
           <p>Computer Engineering Student</p>
@@ -1439,121 +1456,45 @@
     <div class="section-label">Portfolio</div>
     <h2 class="section-title">Featured <span>Projects</span></h2>
   </div>
-  <div class="proj-outer reveal">
-    <!-- Ghost number watermark -->
-    <div class="proj-ghost-num" id="projGhostNum">01</div>
 
-    <!-- Top bar: counter + progress bar + nav arrows -->
-    <div class="proj-topbar">
-      <div class="proj-counter"><span id="projCurNum">01</span> / <span id="projTotalNum">05</span></div>
-      <div class="proj-progress-track">
-        <div class="proj-progress-fill" id="projProgress" style="width:20%"></div>
-      </div>
-      <div class="proj-nav-top">
-        <button class="proj-nav-btn" id="projPrev" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
-        <button class="proj-nav-btn" id="projNext" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
+  <!-- Top bar: counter + progress + arrows -->
+  <div class="proj-topbar reveal">
+    <div class="proj-counter"><span id="projCurNum">01</span> / <span id="projTotalNum">07</span></div>
+    <div class="proj-progress-track">
+      <div class="proj-progress-fill" id="projProgress" style="width:14.3%"></div>
+    </div>
+    <div class="proj-nav-arrows">
+      <button class="proj-control-btn" id="projPrevBtn" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
+      <button class="proj-control-btn" id="projNextBtn" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Split-screen showcase -->
+  <div class="proj-showcase reveal">
+    <!-- Left column: Visual Mockup -->
+    <div class="proj-visual-column">
+      <div class="proj-mockup-wrapper">
+        <div class="proj-mockup-inner" id="mockupInner">
+          <img src="./assets/portfilio.png" alt="Portfolio Website" id="activeProjImg" />
+        </div>
+        <span class="proj-mockup-tag" id="activeProjTag">HTML &middot; CSS &middot; JS</span>
       </div>
     </div>
-
-    <!-- Carousel -->
-    <div class="proj-carousel-viewport">
-      <div class="proj-carousel-track" id="projTrack">
-
-        <!-- Card 1 -->
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="./assets/portfilio.png" alt="Portfolio Website" class="project-img" />
-            <span class="project-tag">HTML &middot; CSS &middot; JS</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">Project 01</div>
-            <div class="project-title">Portfolio Website</div>
-            <div class="project-desc">A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases education, skills, and projects with smooth animations.</div>
-            <div class="project-footer">
-              <a href="https://github.com/Jaykolate/your-repo-name" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-              <a href="https://jaykolate.github.io/personal-portfolio/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
-              <button class="proj-btn open-modal-btn" data-project="0"><i class="bi bi-info-circle"></i> Details</button>
-            </div>
-          </div>
+    
+    <!-- Right column: Text Showcase Info -->
+    <div class="proj-info-column">
+      <div class="proj-info-content" id="projInfoContent">
+        <div class="proj-info-num" id="activeProjNum">Project 01</div>
+        <h3 class="proj-info-title" id="activeProjTitle">Portfolio Website</h3>
+        <p class="proj-info-desc" id="activeProjDesc">A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases education, skills, and projects with smooth animations.</p>
+        
+        <div class="proj-info-footer" id="activeProjFooter">
+          <a href="https://github.com/Jaykolate/your-repo-name" target="_blank" class="proj-btn" id="activeProjGit"><i class="bi bi-github"></i> GitHub</a>
+          <a href="https://jaykolate.github.io/personal-portfolio/" target="_blank" class="proj-btn proj-btn-primary" id="activeProjLive"><i class="bi bi-globe2"></i> Live</a>
+          <button class="proj-btn open-modal-btn" id="activeProjDetails" data-project="0"><i class="bi bi-info-circle"></i> Details</button>
         </div>
-
-        <!-- Card 2 -->
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="./assets/reware.png" alt="Threadly" class="project-img" />
-            <span class="project-tag">React &middot; Node.js &middot; Socket.IO</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">Project 02</div>
-            <div class="project-title">Threadly &mdash; Pre-loved Fashion Marketplace</div>
-            <div class="project-desc">Full-stack sustainable fashion marketplace for buying, selling &amp; swapping pre-loved clothing. Features real-time chat (Socket.IO), JWT auth, Stripe payments, Cloudinary image storage, AI-assisted listing creation via Google Gemini API, and secure password reset with SHA-256 + Nodemailer.</div>
-            <div class="project-footer">
-              <a href="https://github.com/Jaykolate" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-              <a href="https://threadly-liart.vercel.app/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
-              <button class="proj-btn open-modal-btn" data-project="1"><i class="bi bi-info-circle"></i> Details</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="./assets/Screenshot 2025-09-11 001818.png" alt="NoteShare" class="project-img" />
-            <span class="project-tag">HTML &middot; CSS &middot; JavaScript</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">Project 03</div>
-            <div class="project-title">NoteShare</div>
-            <div class="project-desc">A collaborative platform where students can upload, share, and access academic notes in one place. Streamlines knowledge sharing across classrooms and helps peers learn together more efficiently.</div>
-            <div class="project-footer">
-              <a href="https://github.com/Jaykolate/NoteShare" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-              <a href="#" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
-              <button class="proj-btn open-modal-btn" data-project="2"><i class="bi bi-info-circle"></i> Details</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="./assets/staynest.png" alt="StayNest" class="project-img" />
-            <span class="project-tag">Node &middot; Express &middot; MongoDB</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">Project 04</div>
-            <div class="project-title">StayNest</div>
-            <div class="project-desc">A full-stack accommodation booking platform inspired by Airbnb. Users can explore listings, create accounts, add properties, and post reviews — built with Node.js, Express, and MongoDB.</div>
-            <div class="project-footer">
-              <a href="https://github.com/Jaykolate/StayNest" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-              <a href="https://staynest-km1v.onrender.com" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
-              <button class="proj-btn open-modal-btn" data-project="3"><i class="bi bi-info-circle"></i> Details</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="./assets/paircode.png" alt="PairCode" class="project-img" />
-            <span class="project-tag">Node.js &middot; Socket.IO &middot; CodeMirror</span>
-          </div>
-          <div class="project-body">
-            <div class="project-num">Project 05</div>
-            <div class="project-title">PairCode &mdash; Real-time Collaborative Editor</div>
-            <div class="project-desc">A real-time pair programming platform with shared rooms, language selection (JS &amp; Java), live user list, and WebSocket code sync — powered by CodeMirror and Socket.IO.</div>
-            <div class="project-footer">
-              <a href="https://github.com/Jaykolate/PairCode" target="_blank" class="proj-btn"><i class="bi bi-github"></i> GitHub</a>
-              <a href="https://paircode-1-lw6b.onrender.com/" target="_blank" class="proj-btn proj-btn-primary"><i class="bi bi-globe2"></i> Live</a>
-              <button class="proj-btn open-modal-btn" data-project="4"><i class="bi bi-info-circle"></i> Details</button>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-
-    <!-- Dot strip -->
-    <div class="proj-dots-row" id="projDots"></div>
   </div>
 </section>
 
@@ -1588,26 +1529,6 @@
   </div>
 </section>
 
-<!-- HACKATHONS -->
-<section id="hackathons">
-  <div class="section-header reveal">
-    <div class="section-label">Competitions</div>
-    <h2 class="section-title">Hackathons & <span>Competitions</span></h2>
-  </div>
-  <div class="hack-card reveal">
-    <div class="hack-left">
-      <div class="hack-event">Tutedude Hackathon</div>
-      <div class="hack-type">August 2025</div>
-      <div class="hack-platform">Online National Hackathon</div>
-      <div class="hack-platform" style="color:var(--accent2)">Vibe Coding Platform</div>
-    </div>
-    <div class="hack-desc">
-      <strong style="color:var(--text)">MicroMarket</strong> — A virtual local market built in 48 hours during a hackathon. Suppliers create digital stalls to list products, and vendors can order directly. I handled frontend development with my team of 4.
-      <br><br>
-      <a href="https://drive.google.com/file/d/1CnmXiM8AsOcxMpJCspdcs-xUEUhlenud/view?usp=sharing" target="_blank" class="cert-btn" style="display:inline-flex"><i class="bi bi-patch-check-fill"></i> View Certificate</a>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -1985,84 +1906,156 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   });
 })();
 
-// PROJECTS CAROUSEL
+
+// PROJECTS SHOWCASE SLIDER
 (function(){
-  const track    = document.getElementById('projTrack');
-  const dotsWrap = document.getElementById('projDots');
-  const ghost    = document.getElementById('projGhostNum');
-  const curEl    = document.getElementById('projCurNum');
-  const totalEl  = document.getElementById('projTotalNum');
-  const progFill = document.getElementById('projProgress');
-  const cards    = track ? track.querySelectorAll('.project-card') : [];
-  const total    = cards.length;
-  if (!total) return;
+  const projects = [
+    {
+      num: "Project 01",
+      title: "Portfolio Website",
+      desc: "A fully responsive personal portfolio built using HTML, CSS, Bootstrap, and JavaScript. Showcases education, skills, and projects with smooth animations.",
+      img: "./assets/portfilio.png",
+      tag: "HTML &middot; CSS &middot; JS",
+      github: "https://github.com/Jaykolate/your-repo-name",
+      live: "https://jaykolate.github.io/personal-portfolio/",
+      idx: "0"
+    },
+    {
+      num: "Project 02",
+      title: "Threadly &mdash; Pre-loved Fashion Marketplace",
+      desc: "Full-stack sustainable fashion marketplace for buying, selling &amp; swapping pre-loved clothing. Features real-time chat (Socket.IO), JWT auth, Stripe payments, Cloudinary image storage, AI-assisted listing creation via Google Gemini API, and secure password reset with SHA-256 + Nodemailer.",
+      img: "./assets/reware.png",
+      tag: "React &middot; Node.js &middot; Socket.IO",
+      github: "https://github.com/Jaykolate",
+      live: "https://threadly-liart.vercel.app/",
+      idx: "1"
+    },
+    {
+      num: "Project 03",
+      title: "NoteShare",
+      desc: "A collaborative platform where students can upload, share, and access academic notes in one place. Streamlines knowledge sharing across classrooms and helps peers learn together more efficiently.",
+      img: "./assets/Screenshot 2025-09-11 001818.png",
+      tag: "HTML &middot; CSS &middot; JavaScript",
+      github: "https://github.com/Jaykolate/NoteShare",
+      live: "#",
+      idx: "2"
+    },
+    {
+      num: "Project 04",
+      title: "StayNest",
+      desc: "A full-stack accommodation booking platform inspired by Airbnb. Users can explore listings, create accounts, add properties, and post reviews — built with Node.js, Express, and MongoDB.",
+      img: "./assets/staynest.png",
+      tag: "Node &middot; Express &middot; MongoDB",
+      github: "https://github.com/Jaykolate/StayNest",
+      live: "https://staynest-km1v.onrender.com",
+      idx: "3"
+    },
+    {
+      num: "Project 05",
+      title: "PairCode &mdash; Real-time Collaborative Editor",
+      desc: "A real-time pair programming platform with shared rooms, language selection (JS &amp; Java), live user list, and WebSocket code sync — powered by CodeMirror and Socket.IO.",
+      img: "./assets/paircode.png",
+      tag: "Node.js &middot; Socket.IO &middot; CodeMirror",
+      github: "https://github.com/Jaykolate/PairCode",
+      live: "https://paircode-1-lw6b.onrender.com/",
+      idx: "4"
+    },
+    {
+      num: "Project 06",
+      title: "HireTrack &mdash; Job Application Tracker",
+      desc: "A full-stack job application tracking platform that helps users organize applications, manage resume versions, track interview progress, and visualize job search analytics through an interactive dashboard.",
+      img: "./assets/Screenshot 2026-06-30 182007.png",
+      tag: "React &middot; Vite &middot; MySQL &middot; Clerk",
+      github: "https://github.com/Jaykolate",
+      live: "https://hire-track-sepia.vercel.app/",
+      idx: "5"
+    },
+    {
+      num: "Project 07",
+      title: "FormCraft &mdash; No-Code Form Builder",
+      desc: "A no-code form builder that enables users to create, publish, and manage customizable online forms with real-time response collection and analytics.",
+      img: "./assets/Formcraft.png",
+      tag: "React &middot; MongoDB &middot; Recharts &middot; Clerk",
+      github: "https://github.com/Jaykolate",
+      live: "https://formcraft-1-ii7p.onrender.com/",
+      idx: "6"
+    }
+  ];
+
   let current = 0;
+  const total = projects.length;
 
-  // Set total count
-  if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+  const mockup = document.getElementById('mockupInner');
+  const info = document.getElementById('projInfoContent');
+  const imgEl = document.getElementById('activeProjImg');
+  const tagEl = document.getElementById('activeProjTag');
+  const numEl = document.getElementById('activeProjNum');
+  const titleEl = document.getElementById('activeProjTitle');
+  const descEl = document.getElementById('activeProjDesc');
+  const gitEl = document.getElementById('activeProjGit');
+  const liveEl = document.getElementById('activeProjLive');
+  const detailsEl = document.getElementById('activeProjDetails');
+  const curNumEl = document.getElementById('projCurNum');
+  const progFill = document.getElementById('projProgress');
 
-  // Build dots
-  cards.forEach((_, i) => {
-    const d = document.createElement('span');
-    d.className = 'proj-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
-  });
+  if (!imgEl || !mockup || !info) return;
 
   function pad(n) { return String(n + 1).padStart(2, '0'); }
 
-  function goTo(idx) {
-    current = (idx + total) % total;
+  function updateSlide(idx) {
+    if (idx === current) return;
+    
+    // Add transition animating class
+    mockup.classList.add('animating');
+    info.classList.add('animating');
 
-    // Slide
-    track.style.transform = `translateX(-${current * 100}%)`;
+    // Wait for fadeout, then update content
+    setTimeout(() => {
+      current = (idx + total) % total;
+      const p = projects[current];
 
-    // Dots
-    dotsWrap.querySelectorAll('.proj-dot').forEach((d, i) =>
-      d.classList.toggle('active', i === current)
-    );
-
-    // Ghost watermark number
-    if (ghost) ghost.textContent = pad(current);
-
-    // Counter
-    if (curEl) curEl.textContent = pad(current);
-
-    // Progress bar
-    if (progFill) progFill.style.width = `${((current + 1) / total) * 100}%`;
-  }
-
-  document.getElementById('projPrev').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('projNext').addEventListener('click', () => goTo(current + 1));
-
-  // Keyboard support when section is visible
-  document.addEventListener('keydown', e => {
-    const sec = document.getElementById('projects');
-    const r   = sec.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
-      if (e.key === 'ArrowRight') goTo(current + 1);
-      if (e.key === 'ArrowLeft')  goTo(current - 1);
-    }
-  });
-
-  // Swipe support for touch screens
-  const viewport = document.querySelector('.proj-carousel-viewport');
-  if (viewport) {
-    let startX = 0;
-    let endX = 0;
-    viewport.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    viewport.addEventListener('touchend', e => {
-      endX = e.changedTouches[0].clientX;
-      const threshold = 50;
-      const diff = startX - endX;
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) goTo(current + 1);
-        else goTo(current - 1);
+      imgEl.src = p.img;
+      imgEl.alt = p.title;
+      if (p.img === '#') {
+        imgEl.style.display = 'none';
+        mockup.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0c0c18 0%,#1a1a2e 100%);aspect-ratio:16/10;"><span style="color:rgba(255,255,255,0.15);font-family:var(--font2);font-size:1.2rem;font-weight:700;letter-spacing:0.1em;">SCREENSHOT COMING SOON</span></div>';
+      } else {
+        mockup.innerHTML = '';
+        mockup.appendChild(imgEl);
+        imgEl.style.display = 'block';
       }
-    }, { passive: true });
+      tagEl.innerHTML = p.tag;
+      numEl.textContent = p.num;
+      titleEl.innerHTML = p.title;
+      descEl.textContent = p.desc;
+      gitEl.href = p.github;
+      
+      if (p.live !== "#") {
+        liveEl.href = p.live;
+        liveEl.style.display = 'inline-flex';
+      } else {
+        liveEl.style.display = 'none';
+      }
+
+      detailsEl.dataset.project = p.idx;
+
+      // Update counter & progress bar
+      if (curNumEl) curNumEl.textContent = pad(current);
+      if (progFill) progFill.style.width = `${((current + 1) / total) * 100}%`;
+
+      // Remove animating class to trigger fade-in
+      mockup.classList.remove('animating');
+      info.classList.remove('animating');
+    }, 220);
   }
+
+  // Prev/Next listeners
+  document.getElementById('projPrevBtn').addEventListener('click', () => {
+    updateSlide(current - 1);
+  });
+  document.getElementById('projNextBtn').addEventListener('click', () => {
+    updateSlide(current + 1);
+  });
 })();
 
 // SCROLL PROGRESS INDICATOR JS
@@ -2166,9 +2159,9 @@ document.querySelectorAll('.nav-links a').forEach(a => {
       desc: "A personal high-end showcase designed from scratch to highlight engineering capabilities, tools proficiency, and academic history.",
       features: [
         "Interactive vertical timeline for experiences with custom color schemes.",
-        "Redesigned Hero visual featuring planetary 3D orbit tracks.",
+        "Redesigned Hero visual featuring a sleek profile card with static glowing borders.",
         "Smooth client-side category filtering for the skills grid.",
-        "Staggered floating skill badges and reflective sheen button micro-animations.",
+        "Polished layout details and reflective sheen button micro-animations.",
         "Mobile responsive layout stacking visuals and text cleanly."
       ],
       tech: ["HTML5", "CSS3", "JavaScript (ES6+)", "Bootstrap Icons", "Devicon library"],
@@ -2231,6 +2224,36 @@ document.querySelectorAll('.nav-links a').forEach(a => {
       tech: ["Node.js", "Socket.IO", "Express", "CodeMirror Editor", "WebSockets"],
       github: "https://github.com/Jaykolate/PairCode",
       live: "https://paircode-1-lw6b.onrender.com/"
+    },
+    {
+      num: "Project 06",
+      title: "HireTrack — Job Application Tracker",
+      desc: "A full-stack job application tracking platform that helps users organize applications, manage resume versions, track interview progress, and visualize job search analytics.",
+      features: [
+        "Interactive dashboard with job search analytics and visualizations.",
+        "Resume version management system for different job applications.",
+        "Interview progress tracking with status updates and notes.",
+        "Clerk authentication for secure user management.",
+        "MySQL database with structured relational data storage."
+      ],
+      tech: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MySQL", "Clerk", "Axios"],
+      github: "https://github.com/Jaykolate/HireTrack",
+      live: "https://hire-track-sepia.vercel.app/"
+    },
+    {
+      num: "Project 07",
+      title: "FormCraft — No-Code Form Builder",
+      desc: "A no-code form builder that enables users to create, publish, and manage customizable online forms with real-time response collection and analytics.",
+      features: [
+        "Drag-and-drop form builder with customizable field types.",
+        "Real-time response collection and analytics dashboard.",
+        "Recharts-powered data visualization for form responses.",
+        "Email notifications via Nodemailer for new submissions.",
+        "Clerk-based authentication and form access management."
+      ],
+      tech: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Mongoose", "Clerk", "Recharts", "Nodemailer"],
+      github: "https://github.com/Jaykolate/FormCraft",
+      live: "https://formcraft-1-ii7p.onrender.com/"
     }
   ];
 
