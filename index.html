@@ -616,6 +616,38 @@
     }
     .cert-btn:hover { background: var(--gradient); border-color: transparent; color: #fff; }
 
+    /* GITHUB & CODING STATS */
+    #github-stats { padding: 6rem 5%; background: var(--bg2); border-top: 1px solid var(--card-border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+    .stats-card {
+      background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
+      padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .stats-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius);
+      background: var(--gradient); opacity: 0; transition: opacity 0.3s; z-index: 0;
+    }
+    .stats-card:hover::after { opacity: 0.04; }
+    .stats-card:hover { transform: translateY(-6px); border-color: rgba(124, 58, 237, 0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .stats-card > * { position: relative; z-index: 1; }
+    .stats-card-title {
+      font-family: var(--font2); font-size: 1.1rem; font-weight: 700; color: var(--text);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; width: 100%; justify-content: center;
+      letter-spacing: 0.02em;
+    }
+    .stats-card-title i { color: var(--accent2); font-size: 1.25rem; }
+    .stats-card img { max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s; }
+    .stats-card:hover img { transform: scale(1.02); }
+    
+    .stats-full-width { grid-column: span 2; width: 100%; }
+    
+    @media(max-width: 900px) {
+      .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .stats-full-width { grid-column: span 1; }
+    }
+
     /* ── PROJECTS SHOWCASE CAROUSEL ── */
     #projects { padding: 6rem 5%; background: rgba(17,17,24,0.55); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 
@@ -1253,6 +1285,7 @@
     <li><a href="#resume">Resume</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#github-stats">Stats</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="bi bi-list"></i></button>
@@ -1525,6 +1558,44 @@
       <div class="cert-issuer">Technology Job Simulation</div>
       <div class="cert-date">Issued June 25th, 2025</div>
       <a href="https://forage-uploads.s3.amazonaws.com/" target="_blank" class="cert-btn"><i class="bi bi-link-45deg"></i> View Certificate</a>
+    </div>
+  </div>
+<!-- GITHUB & CODING STATS -->
+<section id="github-stats">
+  <div class="section-header reveal">
+    <div class="section-label">Metrics & Activity</div>
+    <h2 class="section-title">GitHub & <span>Coding Stats</span></h2>
+  </div>
+  
+  <div class="stats-grid reveal">
+    <!-- Card 1: GitHub Stats -->
+    <div class="stats-card">
+      <div class="stats-card-title"><i class="bi bi-github"></i> GitHub Metrics</div>
+      <img src="https://github-readme-stats-five-sigma-99.vercel.app/api?username=jaykolate&show_icons=true&theme=tokyonight&title_color=2ea043&icon_color=2ea043&hide_border=true&bg_color=00000000&count_private=true" alt="Jay Kolate's GitHub Stats" loading="lazy" />
+    </div>
+
+    <!-- Card 2: Top Languages -->
+    <div class="stats-card">
+      <div class="stats-card-title"><i class="bi bi-code-slash"></i> Most Used Languages</div>
+      <img src="https://github-readme-stats-five-sigma-99.vercel.app/api/top-langs/?username=jaykolate&layout=compact&theme=tokyonight&title_color=2ea043&icon_color=2ea043&hide_border=true&bg_color=00000000&langs_count=8" alt="Jay Kolate's Top Languages" loading="lazy" />
+    </div>
+
+    <!-- Card 3: GitHub Streak -->
+    <div class="stats-card">
+      <div class="stats-card-title"><i class="bi bi-fire"></i> Contribution Streak</div>
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=JayKolate&theme=tokyonight&hide_border=true&bg_color=00000000" alt="Jay Kolate's GitHub Streak" loading="lazy" />
+    </div>
+
+    <!-- Card 4: LeetCode Stats -->
+    <div class="stats-card">
+      <div class="stats-card-title"><i class="bi bi-trophy"></i> LeetCode Profile</div>
+      <img src="https://leetcard.jacoblin.cool/jay_kolate21?theme=dark&font=Karla&ext=heatmap" alt="Jay Kolate's LeetCode Stats" loading="lazy" />
+    </div>
+
+    <!-- Card 5: Contribution Graph (Full Width) -->
+    <div class="stats-card stats-full-width">
+      <div class="stats-card-title"><i class="bi bi-graph-up-arrow"></i> Interactive Contribution Graph</div>
+      <img src="https://github-readme-activity-graph.vercel.app/graph?username=jaykolate&bg_color=00000000&color=2ea043&line=2ea043&point=c9d1d9&area=true&hide_border=true" alt="Jay Kolate's Activity Graph" loading="lazy" />
     </div>
   </div>
 </section>
