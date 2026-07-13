@@ -400,7 +400,7 @@
     @media(max-width: 600px) { .edu-grid { grid-template-columns: 1fr; } }
 
     /* EXPERIENCE */
-    #experience { padding: 6rem 5%; }
+    #experience, #open-source { padding: 6rem 5%; }
     .exp-timeline {
       position: relative;
       max-width: 900px;
@@ -1284,6 +1284,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#resume">Resume</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#open-source">Open Source</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#github-stats">Stats</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1482,6 +1483,34 @@
     </div>
   </div>
 </section>
+
+
+<!-- OPEN SOURCE EXPERIENCE -->
+<section id="open-source">
+  <div class="section-header reveal">
+    <div class="section-label">Contributions</div>
+    <h2 class="section-title">Open Source <span>Experience</span></h2>
+  </div>
+  <div class="exp-timeline">
+    <!-- Card 1: ECSoC 2026 -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <span class="exp-date-badge"><i class="bi bi-calendar3"></i> Jul 2026 – Present</span>
+        <h3 class="exp-title">Open Source Contributor</h3>
+        <div class="exp-company">ECSoC 2026</div>
+        <div class="exp-location"><i class="bi bi-globe2"></i> Remote</div>
+      </div>
+      <div class="exp-desc">
+        <ul class="exp-list">
+          <li><i class="bi bi-chevron-right"></i> Merged 13+ pull requests across 7 open-source repositories, resolving issues spanning authentication, accessibility, navigation, API handling, and responsive design.</li>
+          <li><i class="bi bi-chevron-right"></i> Collaborated with maintainers through code review cycles to get PRs merged into production codebases.</li>
+          <li><i class="bi bi-chevron-right"></i> Achieved Tier-1 Developer and Verified Contributor status; ranked #28 globally on the ECSoC 2026 leaderboard.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- PROJECTS -->
 <section id="projects">
@@ -1985,7 +2014,7 @@ document.querySelectorAll('.nav-links a').forEach(a => {
       num: "Project 01",
       title: "PairCode &mdash; Real-time Collaborative Editor",
       desc: "A real-time pair programming platform with shared rooms, language selection (JS &amp; Java), live user list, and WebSocket code sync — powered by CodeMirror and Socket.IO.",
-      img: "./assets/paircode.png",
+      img: "./assets/paircode2.png",
       tag: "Node.js &middot; Socket.IO &middot; CodeMirror",
       github: "https://github.com/Jaykolate/PairCode",
       live: "https://paircode-1-lw6b.onrender.com/",
